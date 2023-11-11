@@ -1,0 +1,41 @@
+
+<html ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Directive</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="myController">
+    <div>
+         <h1 align="center">Directives</h1>
+        <p>Enter name: <input type="text" ng-model="username"</p>
+        <p>Welcome</p> <span ng-bind="username"></span>
+        <br>
+        <!-- <div ng-init="name='Ajay'">
+            <h1>{{name}}</h1>
+        </div> -->
+        <!-- <div ng-init="color=['red', 'blue', 'yellow', green]">
+            <h1>{{color[1]}}</h1>
+        </div>
+        <!-- <div ng-init="quantity=1; price=5;">
+            Quantity: <input type="number" ng-model="quantity">
+            <br>
+            Price: <input type="number" ng-model="price">
+            <br>
+            Total Amount is: {{quantity * price}} -->
+                <!-- <ol>
+                    <li ng-repeat="item in fruits">
+                        {{item}}
+                    </li>
+                </ol> -->
+        </div>
+    </div>
+</body>
+<script>
+    var app=angular.module("myapp", []);
+    app.controller("myController", function($scope){
+       $scope.fruits = ["Apple", "Mango", "Banana", "Strawberry"];  
+    });
+</script>
+</html>
