@@ -1,0 +1,17 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="myapp" ng-controller="myctrl">
+        Name is: {{fname+ "" +lname}}
+    </div>
+    <script>
+        var app = angular.module('myapp', []);
+        app.controller('myctrl', function ($scope) {
+            $scope.fname = "Shruti";
+            $scope.lname = "Patel";
+        });
+    </script>
+</body>
+</html>

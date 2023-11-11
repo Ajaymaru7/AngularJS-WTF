@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    </head>
+    <body ng-app="myapp">
+        <h4>ngkeypress Example</h4>  
+    <div ng-controller="HomeController">  
+    <input ng-keypress="keyPress()">  
+    <br /> <p>Key Press count: {{KeyPress}}</p>   
+</div> 
+<script>
+    var app = angular.module("app", []);  
+    app.controller("HomeController", function($scope)  
+    {  
+        $scope.countKeyPress = 0;  
+        $scope.keyPress = function()  
+    {  
+        $scope.countKeyPress = $scope.countKeyPress + 1;  
+    }  
+    });
+</script>
+    </body>
+</html>    

@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    </head>
+    <body>
+        <div ng-app="myapp" ng-controller="myCtrl">
+            <form>
+                Enter Firstname:
+                <p><input type="text" id="fname" ng-model="fname" required></p>
+                
+                EnterLast Name:
+                <p><input type="text" id="lname" ng-model="lname" required></p>
+              
+                <label>Gender:</label>
+                <select ng-model="gender">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              
+                <p><button ng-click="submitForm()">Submit</button></p>
+              </form>
+              <div ng-show="welcomeMessage">
+                <p>{{ welcomeMessage }}</p>
+              </div>
+              
+        </div>
+    </body>
+    <script>
+       var app = angular.module('myapp', []);
+       app.controller('myCtrl', function($scope){
+        $scope.submitForm = function () {
+            var username = $scope.fname+ ' '+ $scope.lname;
+            $scope.welcomeMessage = 'Welcome ' + username;
+        }
+       })
+    </script>
+</html>

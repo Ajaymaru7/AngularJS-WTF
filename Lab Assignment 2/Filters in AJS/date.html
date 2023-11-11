@@ -1,0 +1,17 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+</head>
+<body>
+    <h1>Curunt Date</h1>
+    <div ng-app="gfgApp" ng-controller="dateCntrl">
+        <p>{{ today | date : "dd.mm.yy" }}</p>
+    </div>
+    <script>
+        var app = angular.module('gfgApp', []);
+        app.controller('dateCntrl', function ($scope) {
+            $scope.today = new Date();
+        });
+    </script>
+</body>
+</html>

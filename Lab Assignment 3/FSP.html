@@ -1,0 +1,52 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+<div>
+ <div ng-app="myApp" ng-controller="myCtrl">
+ <p>Service: {{ serviceMsg }}</p>
+ <p>Factory: {{ factoryMsg }}</p>
+ <p>Provider: {{ providerMsg }}</p>
+</div>
+</div>
+<script>
+var x = angular.module('myApp', []);
+x.service('myService', function () {
+this.message = '';
+this.setMessage = function (newMsg) {
+this.message = newMsg;
+return this.message;
+};
+});
+x.factory('myFactory', function () {
+var obj = {};
+obj.message = '';
+obj.setMessage = function (newMsg) {
+obj.message = newMsg;
+};
+return obj;
+});
+x.provider('configurable', function () {
+var returnMessage = '';
+this.setMessage = function (newMsg) {
+returnMessage = newMsg;
+};
+this.$get = function () {
+return {
+    message: returnMessage
+ };
+ };
+});
+x.config(function (configurableProvider) {
+ configurableProvider.setMessage("SERVICE Provider");
+});
+x.controller('myCtrl', function ($scope, myService, myFactory, configurable) {
+ $scope.serviceMsg = myService.setMessage("Service unavailable");
+ myFactory.setMessage("Factory msg");
+ $scope.factoryMsg = myFactory.message;
+ $scope.providerMsg = configurable.message;
+});
+</script>
+</body>
+</html>

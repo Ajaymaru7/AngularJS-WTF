@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>AngularJS Expressions</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="myController">
+
+<h1>AngularJS Expressions</h1>
+
+<!-- Number Expression -->
+<p>Number Expression: {{ numberExpression }}</p>
+
+<!-- String Expression -->
+<p>String Expression: {{ stringExpression }}</p>
+
+<!-- Object Expression -->
+<p>Object Expression: {{ objectExpression.name }} (Age: {{ objectExpression.age }})</p>
+
+<!-- Array Expression -->
+<p>Array Expression: {{ arrayExpression.join(', ') }}</p>
+
+<script>
+    var app = angular.module('myApp', []);
+
+    app.controller('myController', function ($scope) {
+        // Number Expression
+        $scope.numberExpression = 42;
+
+        // String Expression
+        $scope.stringExpression = "Hello, AngularJS!";
+
+        // Object Expression
+        $scope.objectExpression = {
+            name: "John",
+            age: 30
+        };
+
+        // Array Expression
+        $scope.arrayExpression = ["Apple", "Banana", "Cherry"];
+    });
+</script>
+
+</body>
+</html>

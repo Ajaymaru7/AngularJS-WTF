@@ -1,0 +1,22 @@
+<html ng-app="intrApp">
+<head>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="IntervalController">
+ <br /><br />The value of counter is: {{cnt}}
+ <script>
+ var intrApp = angular.module("intrApp", []);
+
+ intrApp.controller("IntervalController", function ($scope, $interval) {
+ $scope.cnt = 0;
+ $scope.increment = function () {
+ $scope.cnt += 1;
+ };
+
+ $interval(function () {
+ $scope.increment();
+ }, 1000);
+ });
+ </script>
+</body>
+</html>

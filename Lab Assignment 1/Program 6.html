@@ -1,0 +1,12 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="" ng-init="fname='Ajay';lname='Maru'">
+        <p>Name is :{{fname+" "+lname}}</p>
+        Father's Name:<input type="text" ng-model="pname"><br>
+        Father's name is:<p ng-bind="pname"></p>
+    </div>
+</body>
+</html>

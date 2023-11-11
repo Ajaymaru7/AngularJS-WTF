@@ -1,0 +1,21 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myapp" ng-controller="myctrl" >
+<p> The octal value of 225 is: {{hex}} </p>
+</div>
+<script>
+var app=angular.module('myapp',[]);
+app.service('demo',function(){
+this.myfunc=function(x){
+return x.toString(8);
+}
+});
+app.controller('myctrl', function($scope, demo){
+$scope.hex = demo.myfunc(135);
+});
+</script>
+</body>
+</html>
