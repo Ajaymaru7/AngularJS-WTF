@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="examApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Custome Directive</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+        }
+
+        .custom-style {
+            background-color: #e0e0e0;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div ng-controller="ExamController">
+    <h1>{{ pageTitle }}</h1>
+
+    <form name="userForm" ng-submit="submitForm()" novalidate>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" ng-model="user.username" required>
+        <span class="error-message" ng-show="userForm.username.$error.required">Username is required.</span>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" ng-model="user.email" ng-pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/" required>
+        <span class="error-message" ng-show="userForm.email.$error.pattern">Invalid email address.</span>
+
+        <button type="submit" ng-disabled="userForm.$invalid">Submit</button>
+    </form>
+
+    <div custom-directive></div>
+
+    <div class="custom-style">
+        <p>Data from the service: {{ DataService.getData() }}</p>
+    </div>
+</div>
+
+<script>
+    var app = angular.module('examApp', []);
+
+    app.controller('ExamController', function ($scope, DataService) {
+        $scope.pageTitle = 'Custom Directive';
+
+        $scope.user = {
+            username: '',
+            email: ''
+        };
+
+        $scope.submitForm = function () {
+            // Handle form submission logic here
+            alert('Form submitted!');
+        };
+
+        $scope.DataService = DataService;
+    });
+
+    app.directive('customDirective', function () {
+        return {
+            restrict: 'AE',
+            template: '<p>This is a custom directive.</p>'
+        };
+    });
+
+    app.service('DataService', function () {
+        var data = 'Sample data from the service.';
+
+        this.getData = function () {
+            return data;
+        };
+    });
+</script>
+
+</body>
+</html>

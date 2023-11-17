@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="directiveApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Directive Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .custom-style {
+            background-color: #e0e0e0;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .directive-container {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div ng-controller="DirectiveController">
+    <h1>{{ pageTitle }}</h1>
+
+    <div ng-if="showContent">
+        <p ng-bind="message"></p>
+    </div>
+
+    <input type="text" ng-model="userInput" placeholder="Enter text">
+
+    <p ng-show="userInput">You entered: {{ userInput }}</p>
+
+    <ul>
+        <li ng-repeat="item in items">{{ item }}</li>
+    </ul>
+
+    <div ng-switch="selectedOption">
+        <p ng-switch-when="option1">You selected Option 1</p>
+        <p ng-switch-when="option2">You selected Option 2</p>
+        <p ng-switch-default>Select an option</p>
+    </div>
+
+    <button ng-click="toggleContent()">Toggle Content</button>
+
+    <div custom-directive class="directive-container"></div>
+</div>
+
+<script>
+    var app = angular.module('directiveApp', []);
+
+    app.controller('DirectiveController', function ($scope) {
+        $scope.pageTitle = 'AngularJS Directive Demo';
+        $scope.showContent = true;
+        $scope.message = 'This content is displayed using ng-if.';
+        $scope.userInput = '';
+        $scope.items = ['Ajay', 'Piyush', 'Raj'];
+        $scope.selectedOption = '';
+
+        $scope.toggleContent = function () {
+            $scope.showContent = !$scope.showContent;
+        };
+    });
+
+    app.directive('customDirective', function () {
+        return {
+            restrict: 'AE',
+            template: '<div class="custom-style"><p>This is a custom directive.</p></div>'
+        };
+    });
+</script>
+
+</body>
+</html>

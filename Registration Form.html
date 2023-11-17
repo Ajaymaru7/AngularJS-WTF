@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="registrationApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .registration-details {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div ng-controller="RegistrationController">
+    <h1>{{ pageTitle }}</h1>
+
+    <form ng-submit="submitForm()">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" ng-model="user.firstName" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" ng-model="user.lastName" required>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" ng-model="user.email" required>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="registration-details" ng-show="showDetails">
+        <h2>Registration Details:</h2>
+        <p><strong>First Name:</strong> {{ user.firstName }}</p>
+        <p><strong>Last Name:</strong> {{ user.lastName }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+</div>
+
+<script>
+    var app = angular.module('registrationApp', []);
+
+    app.controller('RegistrationController', function ($scope) {
+        $scope.pageTitle = 'Registration Form';
+        $scope.user = {};
+        $scope.showDetails = false;
+
+        $scope.submitForm = function () {
+            // Handle form submission logic here
+            // For now, just toggle the visibility of the details section
+            $scope.showDetails = true;
+        };
+    });
+</script>
+
+</body>
+</html>
