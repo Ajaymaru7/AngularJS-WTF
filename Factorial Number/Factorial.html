@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Find Factorial</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <script src="factorial.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="factorialCtrl">
+  <h1>Find Factorial</h1>
+  <input type="number" ng-model="number">
+  <button ng-click="calculateFactorial()">Calculate Factorial</button>
+  <p>Factorial: {{factorial}}</p>
+</body>
+</html>
