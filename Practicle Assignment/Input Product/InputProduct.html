@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Table with Sorting</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 8px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body ng-app="productTableApp" ng-controller="productTableCtrl">
+  <h1>Product Inventory</h1>
+
+  <form>
+    <label>Product Name:</label>
+    <input type="text" ng-model="productName">
+    <label>Product Quantity:</label>
+    <input type="number" ng-model="productQuantity">
+    <label>Product Price:</label>
+    <input type="number" ng-model="productPrice">
+    <button type="button" ng-click="addProduct()">Add Product</button>
+  </form>
+<br>
+  <table>
+    <thead>
+      <tr>
+        <th ng-click="sortBy('name')">Product Name</th>
+        <th ng-click="sortBy('quantity')">Quantity</th>
+        <th ng-click="sortBy('price')">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="product in products | orderBy:'sortColumn':sortReverse">
+        <td>{{product.name}}</td>
+        <td>{{product.quantity}}</td>
+        <td>{{product.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    var app = angular.module('productTableApp', []);
+    app.controller('productTableCtrl', function($scope) {
+      $scope.products = [];
+      $scope.sortColumn = '';
+      $scope.sortReverse = false;
+
+      $scope.addProduct = function() {
+        var product = {
+          name: $scope.productName,
+          quantity: $scope.productQuantity,
+          price: $scope.productPrice
+        };
+        $scope.products.push(product);
+        $scope.productName = '';
+        $scope.productQuantity = '';
+        $scope.productPrice = '';
+      };
+
+      $scope.sortBy = function(column) {
+        if (column === $scope.sortColumn) {
+          $scope.sortReverse = !$scope.sortReverse;
+        } else {
+          $scope.sortColumn = column;
+          $scope.sortReverse = false;
+        }
+      };
+    });
+  </script>
+</body>
+</html>
