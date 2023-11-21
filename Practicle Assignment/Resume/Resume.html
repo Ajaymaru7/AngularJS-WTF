@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="resumeApp">
+<head>
+  <title>My Resume</title>
+  <link rel="stylesheet" href="style.css"> 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script> 
+</head>
+<body ng-controller="resumeCtrl">
+  <div class="container">
+    <h1>My Resume</h1>
+
+    <div class="section" ng-show="showPersonalInfo">
+      <h2>Personal Information</h2>
+      <ul>
+        <li>Name: {{ name }}</li>
+        <li>Email: {{ email }}</li>
+        <li>Phone: {{ phone }}</li>
+      </ul>
+    </div>
+
+    <div class="section" ng-show="showEducation">
+      <h2>Education</h2>
+      <ul>
+        <li>
+          <h3>Bachelor of Computer Application</h3>
+          <h4>Stanford University</h4>
+          <p>2018 - 2021</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section" ng-show="showSkills">
+      <h2>Skills</h2>
+      <ul>
+        <li>AngularJS</li>
+        <li>JavaScript</li>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Python</li>
+      </ul>
+    </div>
+
+    <div class="section" ng-show="showExperience">
+      <h2>Experience</h2>
+      <ul>
+        <li>
+          <h3>Software Engineer</h3>
+          <h4>Google</h4>
+          <p>2022 - Present</p>
+          <ul>
+            <li>Develop and maintain web applications using Python</li>
+            <li>Design and implement new features</li>
+            <li>Write unit tests and documentation</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Software Developer</h3>
+          <h4>Adobe</h4>
+          <p>2021 - 2022</p>
+          <ul>
+            <li>Develop user interfaces with ReactJS, HTML, CSS, and JavaScript</li>
+            <li>Create and consume web services</li>
+            <li>Write tested, idiomatic, and documented code</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>Design And Develop By Ajay Maru &copy; 2023</p>
+  </footer>
+</body>
+<script>
+    angular.module('resumeApp', [])
+
+.controller('resumeCtrl', function($scope) {
+  $scope.name = 'Ajay Maru';
+  $scope.email = 'ajaymaru07@gmail.com';
+  $scope.phone = '123-456-7890';
+  $scope.showPersonalInfo = true;
+  $scope.showEducation = true;
+  $scope.showSkills = true;
+  $scope.showExperience = true;
+});
+</script>
+</html>
